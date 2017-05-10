@@ -17,9 +17,7 @@ public class MainActivity extends SlidingFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initLeftFragment();
-        // asodifjasodiofjoasidjf
-        //sdank
-        //sadas
+
     }
 
     //添加滑动效果
