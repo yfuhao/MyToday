@@ -18,6 +18,7 @@ public class MainActivity extends SlidingFragmentActivity {
         setContentView(R.layout.activity_main);
         initLeftFragment();
         // asodifjasodiofjoasidjf
+        //sdank
     }
 
     //添加滑动效果
