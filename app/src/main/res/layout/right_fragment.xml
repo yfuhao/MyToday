@@ -19,6 +19,7 @@
         android:background="@drawable/login_background_introduce"
         android:weightSum="1">
         <ImageView
+            android:id="@+id/fragment_right_qq"
             android:clickable="true"
             android:layout_width="260dp"
             android:layout_height="50dp"
@@ -26,6 +27,7 @@
             android:background="@drawable/right_qq"
             android:layout_marginTop="50dp"/>
         <ImageView
+            android:id="@+id/fragment_right_xinlang"
             android:clickable="true"
             android:layout_width="260dp"
             android:layout_height="50dp"
@@ -33,6 +35,7 @@
             android:background="@drawable/right_sina"
             android:layout_marginTop="10dp" />
         <ImageView
+            android:id="@+id/fragment_right_tingxun"
             android:clickable="true"
             android:layout_width="260dp"
             android:layout_gravity="center"

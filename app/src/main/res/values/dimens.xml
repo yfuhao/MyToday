@@ -7,7 +7,7 @@
 
     <integer name="num_cols">1</integer>
 
-
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 
     <!-- customview -->
