@@ -1,15 +1,18 @@
 package text.bwie.today.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import text.bwie.today.R;
+import text.bwie.today.RegisterActivity;
 
 /**
  * Created by lenovo-pc on 2017/5/10.
@@ -25,10 +28,27 @@ public class LeftFragment extends BaseFragment {
 
         view = inflater.inflate(R.layout.left_fragment,container,false);
 
+        init();
 
         return view;
 
     }
 
+    private void init() {
+
+        JumpToRegister();
+
+    }
+    //跳转到更多登录
+    private void JumpToRegister() {
+        TextView text_more=(TextView) view.findViewById(R.id.left_more);
+        text_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 }
