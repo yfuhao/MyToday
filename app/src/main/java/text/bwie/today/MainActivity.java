@@ -19,6 +19,7 @@ public class MainActivity extends SlidingFragmentActivity {
         initLeftFragment();
         // asodifjasodiofjoasidjf
         //sdank
+        //sadas
     }
 
     //添加滑动效果
