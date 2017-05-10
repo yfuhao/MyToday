@@ -17,18 +17,21 @@
         android:orientation="vertical"
         android:background="@drawable/login_background_introduce">
         <ImageView
+            android:id="@+id/fragment_right_qq"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/right_qq"
             android:layout_marginTop="10dp"/>
         <ImageView
+            android:id="@+id/fragment_right_xinlang"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/right_sina"
             android:layout_marginTop="10dp"/>
         <ImageView
+            android:id="@+id/fragment_right_tingxun"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
