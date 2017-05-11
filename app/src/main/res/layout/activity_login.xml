@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/register_heard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+
+
+    <EditText
+        android:id="@+id/register_activity_edit_phone"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:hint="请输入手机号" />
+
+    <EditText
+        android:id="@+id/register_activity_edit_password"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="请输入密码" />
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/register_activity_text_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="注册账号"
+            android:textColor="#666666" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:text="忘记密码"
+            android:textColor="#666666" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/register_activity_btn_register"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/redborder"
+        android:text="登录"
+        android:textColor="#ff0000"
+        android:textSize="20sp" />
+
+</LinearLayout>
