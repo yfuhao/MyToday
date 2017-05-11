@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".RegisterPhoneActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegisterActivityRegister"></activity>
     </application>
 
 </manifest>

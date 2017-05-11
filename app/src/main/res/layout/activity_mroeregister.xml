@@ -34,7 +34,7 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/register_register"
+            android:id="@+id/register_new"
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:layout_below="@+id/register_phone"
@@ -49,7 +49,7 @@
             android:id="@+id/register_register_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/register_register">
+            android:layout_below="@+id/register_new">
 
             <TextView
                 android:id="@+id/register_text_register"

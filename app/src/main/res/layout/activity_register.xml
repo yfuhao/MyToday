@@ -24,18 +24,6 @@
         android:layout_gravity="center"
         android:hint="请输入密码" />
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/register_activity_text_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_gravity="center"
-            android:text="注册账号"
-            android:textColor="#666666" />
-
-
-
     <Button
         android:id="@+id/register_activity_btn_register"
         android:layout_width="140dp"
