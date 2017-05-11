@@ -19,9 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegisterActivityRegister"></activity>
+        <activity android:name=".fragments.RegisterActivity"></activity>
+        <activity android:name=".fragments.LoginActivity"></activity>
+        <activity android:name=".fragments.RegisterActivityRegister"></activity>
     </application>
 
 </manifest>

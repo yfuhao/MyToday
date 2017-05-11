@@ -3,16 +3,12 @@ package text.bwie.today.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
-
 import text.bwie.today.R;
-import text.bwie.today.RegisterActivity;
 
 /**
  * Created by lenovo-pc on 2017/5/10.

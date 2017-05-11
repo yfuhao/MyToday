@@ -1,4 +1,4 @@
-package text.bwie.today;
+package text.bwie.today.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import text.bwie.today.R;
 import text.bwie.today.utils.RegisterBean;
 
 

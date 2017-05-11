@@ -1,4 +1,4 @@
-package text.bwie.today;
+package text.bwie.today.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -16,6 +15,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import text.bwie.today.R;
 import text.bwie.today.utils.RegisterBean;
 
 /**
