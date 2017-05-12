@@ -22,6 +22,7 @@
         <activity android:name=".fragments.RegisterActivity"></activity>
         <activity android:name=".fragments.LoginActivity"></activity>
         <activity android:name=".fragments.RegisterActivityRegister"></activity>
+        <activity android:name=".OfflineActivity" />
     </application>
 
 </manifest>
