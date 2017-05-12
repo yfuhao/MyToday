@@ -2,6 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ff0000"
     android:orientation="vertical">
 
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springview_tuijian"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/tuijian_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </com.liaoinstan.springview.widget.SpringView>
 </LinearLayout>

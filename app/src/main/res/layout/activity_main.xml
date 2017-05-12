@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="text.bwie.today.MainActivity">
 
-    <include layout="@layout/pub_title"
+    <include
+        layout="@layout/pub_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
 
@@ -16,100 +16,109 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#6666"
-        >
+        android:background="#6666">
+
         <HorizontalScrollView
-            android:layout_toLeftOf="@+id/main_manage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/main_manage">
 
             <RadioGroup
                 android:id="@+id/main_radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/main_rb_tuijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:text="推荐"
+                    android:paddingBottom="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="20sp"/>
+                    android:text="推荐"
+                    android:textSize="20sp" />
+
                 <RadioButton
                     android:id="@+id/main_rb_redian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:text="热点"
+                    android:paddingBottom="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="20sp"/>
+                    android:text="热点"
+                    android:textSize="20sp" />
+
                 <RadioButton
                     android:id="@+id/main_rb_shipin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:text="视频"
+                    android:paddingBottom="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="20sp"/>
+                    android:text="视频"
+                    android:textSize="20sp" />
+
                 <RadioButton
                     android:id="@+id/main_rb_beijing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:text="北京"
+                    android:paddingBottom="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="20sp"/>
+                    android:text="北京"
+                    android:textSize="20sp" />
+
                 <RadioButton
                     android:id="@+id/main_rb_shehui"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:text="社会"
+                    android:paddingBottom="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="20sp"/>
+                    android:text="社会"
+                    android:textSize="20sp" />
+
                 <RadioButton
                     android:id="@+id/main_rb_dingyue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:text="订阅"
+                    android:paddingBottom="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textSize="20sp"/>
+                    android:text="订阅"
+                    android:textSize="20sp" />
             </RadioGroup>
 
         </HorizontalScrollView>
+
         <ImageView
             android:id="@+id/main_manage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:clickable="true"
-            android:src="@drawable/titlbar_press"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:src="@drawable/titlbar_press" />
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/main_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
 
 
 </LinearLayout>
