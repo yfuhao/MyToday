@@ -98,7 +98,6 @@ public class MainActivity extends SlidingFragmentActivity {
                         fragment=new DingyueFragment();
                         break;
                 }
-               rg.check(rg.getChildAt(position).getId());
                 return fragment;
             }
 
@@ -107,12 +106,34 @@ public class MainActivity extends SlidingFragmentActivity {
                 return 6;
             }
         });
+        //radiogroup点击监听
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                viewPager.setCurrentItem(checkedId);
+                for(int i=0;i<6;i++){
+                    if(rg.getChildAt(i).getId()==checkedId){
+                        viewPager.setCurrentItem(i);
+                    }
+                }
             }
         });
 
+        //viewpager滑动
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                rg.check(rg.getChildAt(position).getId());
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }
