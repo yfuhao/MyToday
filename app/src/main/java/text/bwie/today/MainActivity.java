@@ -42,6 +42,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
     }
 
+    //
     //添加滑动效果
     private void initLeftFragment() {
         //左滑
