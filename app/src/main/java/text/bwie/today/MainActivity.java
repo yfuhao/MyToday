@@ -1,15 +1,10 @@
 package text.bwie.today;
 
-import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -30,7 +25,7 @@ import text.bwie.today.fragments.mainfragments.TuijiandianFragment;
 public class MainActivity extends SlidingFragmentActivity {
 
     private SlidingMenu slidingMenu;
-    private List<Fragment> fragments=new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>();
     private RadioGroup rg;
     private ViewPager viewPager;
 
@@ -45,9 +40,9 @@ public class MainActivity extends SlidingFragmentActivity {
     //添加滑动效果
     private void initLeftFragment() {
         //左滑
-        Fragment leftFragment=new LeftFragment();
+        Fragment leftFragment = new LeftFragment();
         setBehindContentView(R.layout.left_frame);
-        getSupportFragmentManager().beginTransaction().replace(R.id.left_frame,leftFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.left_frame, leftFragment).commit();
 
         slidingMenu = getSlidingMenu();
 
@@ -63,7 +58,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
         slidingMenu.setFadeDegree(0.35f);
         //右滑
-        Fragment rightFragment=new RightFragment();
+        Fragment rightFragment = new RightFragment();
         slidingMenu.setSecondaryMenu(R.layout.right_frame);
         getSupportFragmentManager().beginTransaction().replace(R.id.right_frame, rightFragment).commit();
 
@@ -72,33 +67,35 @@ public class MainActivity extends SlidingFragmentActivity {
     }
 
     private void AddFragment() {
+        //radiogroup的写入
         rg = (RadioGroup) findViewById(R.id.main_radioGroup);
         viewPager = (ViewPager) findViewById(R.id.main_vp);
+        //viewpager添加fragment
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                Fragment fragment=null;
-                switch (position){
+                Fragment fragment = null;
+                switch (position) {
                     case 0:
-                        fragment=new TuijiandianFragment();
+                        fragment = new TuijiandianFragment();
                         break;
                     case 1:
-                        fragment=new RedianFragment();
+                        fragment = new RedianFragment();
                         break;
                     case 2:
-                        fragment=new ShipinFragment();
+                        fragment = new ShipinFragment();
                         break;
                     case 3:
-                        fragment=new BeijingFragment();
+                        fragment = new BeijingFragment();
                         break;
                     case 4:
-                        fragment=new ShehuiFragment();
+                        fragment = new ShehuiFragment();
                         break;
                     case 5:
-                        fragment=new DingyueFragment();
+                        fragment = new DingyueFragment();
                         break;
                 }
-               rg.check(rg.getChildAt(position).getId());
+                rg.check(rg.getChildAt(position).getId());
                 return fragment;
             }
 
@@ -107,9 +104,11 @@ public class MainActivity extends SlidingFragmentActivity {
                 return 6;
             }
         });
+        //radiogroupd的监听
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                //设置viewpager的滑动
                 viewPager.setCurrentItem(checkedId);
             }
         });
