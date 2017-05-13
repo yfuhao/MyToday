@@ -30,4 +30,7 @@ dependencies {
     compile project(':SlidingMenu-master')
     compile 'org.xutils:xutils:3.5.0'
     compile 'com.google.code.gson:gson:2.8.0'
+
+    compile 'com.kyleduo.switchbutton:library:1.4.6'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

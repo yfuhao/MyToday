@@ -1,6 +1,7 @@
 package text.bwie.today;
 
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -9,15 +10,23 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import text.bwie.today.events.MainActivityEvent;
 import text.bwie.today.fragments.LeftFragment;
 import text.bwie.today.fragments.RightFragment;
 import text.bwie.today.fragments.mainfragments.BeijingFragment;
@@ -27,8 +36,11 @@ import text.bwie.today.fragments.mainfragments.ShehuiFragment;
 import text.bwie.today.fragments.mainfragments.ShipinFragment;
 import text.bwie.today.fragments.mainfragments.TuijiandianFragment;
 
+import static android.R.id.list;
+
 public class MainActivity extends SlidingFragmentActivity {
 
+    private List<Fragment> list = new ArrayList<Fragment>();
     private SlidingMenu slidingMenu;
     private List<Fragment> fragments=new ArrayList<>();
     private RadioGroup rg;
@@ -39,6 +51,13 @@ public class MainActivity extends SlidingFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initLeftFragment();
+
+        initGrayBackgroud();
+
+        //如果当前页面 已经注册了  则不需要注册
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
 
     }
 
@@ -137,4 +156,88 @@ public class MainActivity extends SlidingFragmentActivity {
             }
         });
     }
+
+    WindowManager windowManager ;
+    WindowManager.LayoutParams layoutParams ;
+    View view ;
+
+    public void initGrayBackgroud() {
+        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+
+//        应用程序窗口。 WindowManager.LayoutParams.TYPE_APPLICATION
+//        所有程序窗口的“基地”窗口，其他应用程序窗口都显示在它上面。
+//        普通应用功能程序窗口。token必须设置为Activity的token，以指出该窗口属谁。
+
+//        后面的view获得焦点
+        layoutParams = new WindowManager.LayoutParams
+                (WindowManager.LayoutParams.TYPE_APPLICATION,WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        PixelFormat.TRANSPARENT);
+        view = new View(this);
+
+        view.setBackgroundResource(R.color.color_window);
+
+    }
+
+    // 日 夜切换
+// 日 夜切换
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMainActivityEvent(MainActivityEvent event){
+        System.out.println("isChecked = " + event.isWhite());
+
+        if(event.isWhite()){
+            // 日
+            windowManager.removeViewImmediate(view);
+        } else  {
+            // true 夜
+            windowManager.addView(view, layoutParams);
+
+        }
+        //对所有的控件取出,设置对应的图片
+        setView();
+        //更改字体颜色
+        switchTextViewColor((ViewGroup) getWindow().getDecorView(),event.isWhite());
+
+
+        /*LeftFragment leftFragment = (LeftFragment) list.get(0);
+        leftFragment.changeMode(event.isWhite());*/
+
+
+    }
+    // 更改 控件 背景
+    private   void setView(){
+
+
+    }
+    /**
+     * 遍历出所有的textView设置对应的颜色
+     * @param view
+     */
+    public void switchTextViewColor(ViewGroup view,boolean white) {
+//        getChildCount 获取ViewGroup下view的个数
+//        view.getChildAt(i) 根据下标获取对应的子view
+        for (int i = 0; i < view.getChildCount(); i++) {
+            if (view.getChildAt(i) instanceof ViewGroup) {
+                switchTextViewColor((ViewGroup) view.getChildAt(i),white);
+            } else if (view.getChildAt(i) instanceof TextView) {
+                //设置颜色
+                int resouseId ;
+                TextView textView = (TextView) view.getChildAt(i);
+                if(white){
+                    resouseId = Color.BLACK;
+                }else {
+                    resouseId = Color.WHITE;
+                }
+                textView.setTextColor(resouseId);
+            }
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
 }
