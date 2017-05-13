@@ -44,6 +44,8 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener{
     }
 
     private void init() {
+        JumpToRegister();
+    }
     private void init(View view) {
         ImageView imageView = (ImageView) view.findViewById(R.id.left_xiazai);
         imageView.setOnClickListener(new View.OnClickListener() {

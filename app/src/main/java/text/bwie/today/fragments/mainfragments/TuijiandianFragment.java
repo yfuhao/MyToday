@@ -28,20 +28,20 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tuijian_fragment, container, false);
-        init(view);
+        //init(view);
         return view;
     }
 
-    private void init(View view) {
-        //创建一个上拉下拉
-        springView = (SpringView) view.findViewById(R.id.springview_tuijian);
-        springView.setHeader(new MeituanHeader(getActivity()));
-        springView.setFooter(new MeituanFooter(getActivity()));
-        springView.setType(SpringView.Type.FOLLOW);
-        springView.setListener(this);
-        listView = (ListView) view.findViewById(R.id.tuijian_listview);
-
-    }
+//    private void init(View view) {
+//        //创建一个上拉下拉
+//        springView = (SpringView) view.findViewById(R.id.springview_tuijian);
+//        springView.setHeader(new MeituanHeader(getActivity()));
+//        springView.setFooter(new MeituanFooter(getActivity()));
+//        springView.setType(SpringView.Type.FOLLOW);
+//        springView.setListener(this);
+//        listView = (ListView) view.findViewById(R.id.tuijian_listview);
+//
+//    }
 
     //上拉刷新
     @Override
