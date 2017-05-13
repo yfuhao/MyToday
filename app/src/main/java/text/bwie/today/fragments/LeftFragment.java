@@ -25,7 +25,7 @@ import text.bwie.today.utils.PreferencesUtils;
  * Created by lenovo-pc on 2017/5/10.
  */
 
-public class LeftFragment extends BaseFragment implements View.OnClickListener{
+public class LeftFragment extends BaseFragment implements View.OnClickListener {
     private SwitchButton switchButton;
     private View view;
 
@@ -35,7 +35,7 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener{
 
         view = inflater.inflate(R.layout.left_fragment, container, false);
 
-        init();
+
         initView(view);
         init(view);
 
@@ -43,9 +43,7 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener{
 
     }
 
-    private void init() {
-        JumpToRegister();
-    }
+
     private void init(View view) {
         ImageView imageView = (ImageView) view.findViewById(R.id.left_xiazai);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +53,10 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener{
                 startActivity(intent);
             }
         });
+
+
         JumpToRegister();
     }
-
 
 
     //跳转到更多登录
@@ -84,8 +83,8 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener{
 
                 // isChecked true false
                 System.out.println("isChecked = " + isChecked);
-//
-                boolean mode =  PreferencesUtils.getValueByKey(getContext(), Constants.isNightMode,isChecked);
+
+                boolean mode = PreferencesUtils.getValueByKey(getContext(), Constants.isNightMode, isChecked);
                 setMode(isChecked);
                 EventBus.getDefault().post(new MainActivityEvent(isChecked));
 
@@ -99,14 +98,14 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
         }
     }
 
 
-    private void setBackground(boolean white){
+    private void setBackground(boolean white) {
 
-        if(white){
+        if (white) {
             view.setBackgroundColor(Color.WHITE);
         } else {
             //夜间
@@ -116,8 +115,8 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener{
 
 
     // mode true 夜 false 日
-    private void setMode(boolean mode){
-        PreferencesUtils.addConfigInfo(getContext(), Constants.isNightMode,mode);
+    private void setMode(boolean mode) {
+        PreferencesUtils.addConfigInfo(getContext(), Constants.isNightMode, mode);
 
     }
 
