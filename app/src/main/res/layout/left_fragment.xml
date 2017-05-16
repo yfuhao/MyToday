@@ -1,59 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/iwhite"
-    >
+    android:orientation="vertical">
 
-
-
-    <LinearLayout
-        android:id="@+id/left_head_layout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_height="90dp"
+        android:background="#F4F4F5">
 
-        <ImageView
-            android:id="@+id/left_image_qzone"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:src="@drawable/ic_drawer_qzone" />
+        <LinearLayout
+            android:id="@+id/fragment_left_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="invisible">
 
-        <ImageView
-            android:id="@+id/left_image_tencent"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:src="@drawable/ic_drawer_tencent" />
+            <ImageView
+                android:id="@+id/fragment_left_user_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp" />
 
-        <ImageView
-            android:id="@+id/left_image_weibo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:src="@drawable/ic_drawer_weibo" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/fragment_left_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_margin="10dp"
+                    android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/left_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/left_head_layout"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:clickable="true"
-        android:text="更多登录方式"
-        android:textColor="@color/iblack" />
+                <TextView
+                    android:id="@+id/fragment_left_user_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_margin="10dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_left_denglu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/left_image_qzone"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_drawer_qzone" />
+
+                <ImageView
+                    android:id="@+id/left_image_tencent"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_drawer_tencent" />
+
+                <ImageView
+                    android:id="@+id/left_image_weibo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_drawer_weibo" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/left_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="更多登陆方式>"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
     <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/left_more"
@@ -153,19 +198,19 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-    <com.kyleduo.switchbutton.SwitchButton
-        android:layout_width="match_parent"
-        style="@style/SwitchButtonStyle"
-        android:id="@+id/switch_btn"
-        android:checked="true"
-        android:layout_height="match_parent"
-        custom:kswTextOn="白天模式"
-        custom:kswTextOff="夜间模式"
-        custom:kswThumbColor="#00FF00"
-        custom:kswThumbRadius="10dp"
-        android:textColor="@color/custom_text_state_color"
-        custom:kswBackColor="#999999"
-        custom:kswBackRadius="10dp"/>
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/switch_btn"
+            style="@style/SwitchButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:textColor="@color/custom_text_state_color"
+            custom:kswBackColor="#999999"
+            custom:kswBackRadius="10dp"
+            custom:kswTextOff="夜间模式"
+            custom:kswTextOn="白天模式"
+            custom:kswThumbColor="#00FF00"
+            custom:kswThumbRadius="10dp" />
 
     </LinearLayout>
 </LinearLayout>

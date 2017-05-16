@@ -1,6 +1,8 @@
 package text.bwie.today.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,12 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.Map;
 
+import text.bwie.today.MyApplication;
 import text.bwie.today.R;
 
 /**
@@ -30,8 +34,12 @@ public class RightFragment extends Fragment {
     private LinearLayout linearLayoutuser;
     private LinearLayout linearLayoutdenglu;
     private ImageView touxiang;
-    private TextView name;
-    private TextView zhanghao;
+    private TextView user_name;
+    private TextView user_zhanghao;
+    private ImageView qqimageView;
+    private ImageView xinlangimageView;
+    private ImageView tingxunimageView;
+    private SharedPreferences usershared;
 
     @Nullable
     @Override
@@ -45,42 +53,64 @@ public class RightFragment extends Fragment {
         linearLayoutuser = (LinearLayout) view.findViewById(R.id.right_layout_user);
         linearLayoutdenglu = (LinearLayout) view.findViewById(R.id.right_layout_denglu);
         touxiang = (ImageView) view.findViewById(R.id.right_fragment_image_touxiang);
-        name = (TextView) view.findViewById(R.id.right_fragment_tv_name);
-        zhanghao = (TextView) view.findViewById(R.id.right_fragment_tv_zhanghao);
+        user_name = (TextView) view.findViewById(R.id.right_fragment_tv_name);
+        user_zhanghao = (TextView) view.findViewById(R.id.right_fragment_tv_zhanghao);
 
-        ImageView qqimageView = (ImageView) view.findViewById(R.id.fragment_right_qq);
-        ImageView xinlangimageView = (ImageView) view.findViewById(R.id.fragment_right_xinlang);
-        ImageView tingxunimageView = (ImageView) view.findViewById(R.id.fragment_right_tingxun);
+        usershared = getActivity().getSharedPreferences("user", Context.MODE_APPEND);
+
+        qqimageView = (ImageView) view.findViewById(R.id.fragment_right_qq);
+        xinlangimageView = (ImageView) view.findViewById(R.id.fragment_right_xinlang);
+        tingxunimageView = (ImageView) view.findViewById(R.id.fragment_right_tingxun);
+        String name = usershared.getString("user_name", null);
+        String image = usershared.getString("user_image", null);
+        String gender = usershared.getString("user_gender", null);
+        if (name != null && image != null) {
+            ImageLoader.getInstance().displayImage(image, touxiang, MyApplication.getdisplay());
+            user_name.setText(name);
+            user_zhanghao.setText(gender);
+            linearLayoutuser.setVisibility(View.VISIBLE);
+            linearLayoutdenglu.setVisibility(View.INVISIBLE);
+        } else {
+            linearLayoutuser.setVisibility(View.INVISIBLE);
+            linearLayoutdenglu.setVisibility(View.VISIBLE);
+        }
+
+        //图片的监听事件
+        imageclick();
+
+
+    }
+
+    private void imageclick() {
         qqimageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //图片的监听事件
-                shard(SHARE_MEDIA.QQ);
+                shard();
             }
         });
         xinlangimageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //图片的监听事件
-                shard(SHARE_MEDIA.SINA);
+                //图片的监听事件 Toast.makeText(getActivity(), "qq", Toast.LENGTH_SHORT).show();
+                shard();
             }
         });
         tingxunimageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //图片的监听事件
-                shard(SHARE_MEDIA.QQ);
+                //图片的监听事件 Toast.makeText(getActivity(), "qq", Toast.LENGTH_SHORT).show();
+                shard();
             }
         });
-
     }
 
     //
-    public void shard(SHARE_MEDIA qq) {
+    public void shard() {
 
         // mShareAPI.getPlatformInfo(UserinfoActivity.this, SHARE_MEDIA.SINA, umAuthListener);
 
-        UMShareAPI.get(getActivity()).getPlatformInfo(getActivity(), qq, new UMAuthListener() {
+        UMShareAPI.get(getActivity()).getPlatformInfo(getActivity(), SHARE_MEDIA.QQ, new UMAuthListener() {
             @Override
             public void onStart(SHARE_MEDIA share_media) {
                 Toast.makeText(getActivity(), "开始登陆", Toast.LENGTH_SHORT).show();
@@ -90,12 +120,19 @@ public class RightFragment extends Fragment {
             public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
                 String uid = map.get("uid");
                 String name = map.get("name");
+                //性别
                 String gender = map.get("gender");
                 String iconurl = map.get("iconurl");
-//                linearLayoutuser.setVisibility(View.VISIBLE);
-//                linearLayoutdenglu.setVisibility(View.INVISIBLE);
-               // ImageLoader.getInstance().displayImage(iconurl, touxiang);
-                System.out.println("name+name " + name);
+                String unionid = map.get("unionid");
+                //添加到数据库中
+                usershared.edit().putString("user_name", name).commit();
+                usershared.edit().putString("user_image", iconurl).commit();
+                usershared.edit().putString("user_gender", gender).commit();
+                linearLayoutuser.setVisibility(View.VISIBLE);
+                linearLayoutdenglu.setVisibility(View.INVISIBLE);
+                ImageLoader.getInstance().displayImage(iconurl, touxiang, MyApplication.getdisplay());
+                user_name.setText(name);
+                user_zhanghao.setText("性别:" + gender);
 
             }
 

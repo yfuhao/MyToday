@@ -7,11 +7,12 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:visibility="invisible"
         android:id="@+id/right_layout_user"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="horizontal">
+        android:background="#f9f9f9"
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <ImageView
             android:id="@+id/right_fragment_image_touxiang"
@@ -36,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:padding="15dp"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
 
