@@ -2,17 +2,14 @@ package text.bwie.today;
 
 import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -35,8 +32,6 @@ import text.bwie.today.fragments.mainfragments.RedianFragment;
 import text.bwie.today.fragments.mainfragments.ShehuiFragment;
 import text.bwie.today.fragments.mainfragments.ShipinFragment;
 import text.bwie.today.fragments.mainfragments.TuijiandianFragment;
-
-import static android.R.id.list;
 
 public class MainActivity extends SlidingFragmentActivity {
 
@@ -142,11 +137,11 @@ public class MainActivity extends SlidingFragmentActivity {
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                rg.check(rg.getChildAt(position).getId());
             }
 
             @Override
             public void onPageSelected(int position) {
+                rg.check(rg.getChildAt(position).getId());
 
             }
 

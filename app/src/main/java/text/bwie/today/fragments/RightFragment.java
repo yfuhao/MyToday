@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.umeng.socialize.UMAuthListener;
@@ -25,6 +27,11 @@ import text.bwie.today.R;
 public class RightFragment extends Fragment {
 
     private View view;
+    private LinearLayout linearLayoutuser;
+    private LinearLayout linearLayoutdenglu;
+    private ImageView touxiang;
+    private TextView name;
+    private TextView zhanghao;
 
     @Nullable
     @Override
@@ -35,6 +42,12 @@ public class RightFragment extends Fragment {
     }
 
     private void init(View view) {
+        linearLayoutuser = (LinearLayout) view.findViewById(R.id.right_layout_user);
+        linearLayoutdenglu = (LinearLayout) view.findViewById(R.id.right_layout_denglu);
+        touxiang = (ImageView) view.findViewById(R.id.right_fragment_image_touxiang);
+        name = (TextView) view.findViewById(R.id.right_fragment_tv_name);
+        zhanghao = (TextView) view.findViewById(R.id.right_fragment_tv_zhanghao);
+
         ImageView qqimageView = (ImageView) view.findViewById(R.id.fragment_right_qq);
         ImageView xinlangimageView = (ImageView) view.findViewById(R.id.fragment_right_xinlang);
         ImageView tingxunimageView = (ImageView) view.findViewById(R.id.fragment_right_tingxun);
@@ -70,8 +83,7 @@ public class RightFragment extends Fragment {
         UMShareAPI.get(getActivity()).getPlatformInfo(getActivity(), qq, new UMAuthListener() {
             @Override
             public void onStart(SHARE_MEDIA share_media) {
-                System.out.println("登陆成功");
-                Toast.makeText(getActivity(), "登录成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "开始登陆", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -80,20 +92,21 @@ public class RightFragment extends Fragment {
                 String name = map.get("name");
                 String gender = map.get("gender");
                 String iconurl = map.get("iconurl");
-
+//                linearLayoutuser.setVisibility(View.VISIBLE);
+//                linearLayoutdenglu.setVisibility(View.INVISIBLE);
+               // ImageLoader.getInstance().displayImage(iconurl, touxiang);
+                System.out.println("name+name " + name);
 
             }
 
             @Override
             public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
-                System.out.println("登陆失败");
+
                 Toast.makeText(getActivity(), "登录失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancel(SHARE_MEDIA share_media, int i) {
-                System.out.println("登陆取消");
-
                 Toast.makeText(getActivity(), "登录取消", Toast.LENGTH_SHORT).show();
             }
         });

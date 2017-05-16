@@ -1,47 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#ffffff"
     android:gravity="bottom"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <LinearLayout
+        android:visibility="invisible"
+        android:id="@+id/right_layout_user"
         android:layout_width="match_parent"
-        android:layout_height="200dp"></LinearLayout>
+        android:layout_height="200dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/right_fragment_image_touxiang"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/right_fragment_tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="15dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/right_fragment_tv_zhanghao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="15dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/right_layout_denglu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
 
-        android:orientation="vertical"
         android:background="@drawable/login_background_introduce"
+        android:orientation="vertical"
         android:weightSum="1">
+
         <ImageView
             android:id="@+id/fragment_right_qq"
-            android:clickable="true"
             android:layout_width="260dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginTop="50dp"
             android:background="@drawable/right_qq"
-            android:layout_marginTop="50dp"/>
+            android:clickable="true" />
+
         <ImageView
             android:id="@+id/fragment_right_xinlang"
-            android:clickable="true"
             android:layout_width="260dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/right_sina"
-            android:layout_marginTop="10dp" />
+            android:clickable="true" />
+
         <ImageView
             android:id="@+id/fragment_right_tingxun"
-            android:clickable="true"
             android:layout_width="260dp"
-            android:layout_gravity="center"
             android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/tencent"
-            android:layout_marginTop="10dp"/>
+            android:clickable="true" />
 
     </LinearLayout>
 
