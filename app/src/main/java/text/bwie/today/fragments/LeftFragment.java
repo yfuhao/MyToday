@@ -58,7 +58,7 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener {
 
         //日间夜间切换
         initView(view);
-        //下载监听
+        //离线缓存监听
         init(view);
 
         return view;
@@ -66,7 +66,7 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener {
     }
 
 
-    //下载监听
+    //离线缓存监听
     private void init(View view) {
         ImageView imageView = (ImageView) view.findViewById(R.id.left_xiazai);
         imageView.setOnClickListener(new View.OnClickListener() {
