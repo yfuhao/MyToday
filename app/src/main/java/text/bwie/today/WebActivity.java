@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 /**
  * Created by yufuhao on 2017/5/17.
@@ -24,16 +22,27 @@ public class WebActivity extends Activity {
         webview = (WebView) findViewById(R.id.web_activity);
         Intent intent = getIntent();
         url = intent.getStringExtra("url");
-        System.out.println("url = "+url);
+        // webview.getSettings().
         webview.loadUrl(url);
-        //在app中显示网页
-        webview.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                webview.loadUrl(url);
-                return true;
-            }
-        });
+//        WebSettings webSettings = webview.getSettings();
+//        webSettings.setUseWideViewPort(true);//设置此属性，可任意比例缩放
+//        webSettings.setLoadWithOverviewMode(true);
+        //webview.setPluginsEnabled(true);
 
+        //在app中显示网页
+//        webview.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+//                view.loadUrl(url);
+//                return false;
+//            }
+//        });
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 }
