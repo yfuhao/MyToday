@@ -1,5 +1,6 @@
 package text.bwie.today.fragments.mainfragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -24,6 +26,8 @@ import java.util.List;
 
 import text.bwie.today.Beans.Tuijian_bean;
 import text.bwie.today.R;
+import text.bwie.today.WebActivity;
+import text.bwie.today.utils.MyAdapter;
 
 /**
  * Created by lenovo-pc on 2017/5/11.
@@ -38,20 +42,25 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
     List<Tuijian_bean.DataBean> list = new ArrayList<Tuijian_bean.DataBean>();
 
     private Handler handler = new Handler() {
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
-
+                    //创建适配器，并给listview添加适配器
+                    adapter = new MyAdapter(getActivity(), list);
+                    listView.setAdapter(adapter);
                     break;
                 case 2:
-
+                    //刷新数据
+                    adapter.notifyDataSetChanged();
                     break;
 
             }
         }
     };
+    private MyAdapter adapter;
 
     @Nullable
     @Override
@@ -69,13 +78,20 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
         springView.setType(SpringView.Type.FOLLOW);
         springView.setListener(this);
         listView = (ListView) view.findViewById(R.id.tuijian_listview);
-
-        //访问网路给listview添加数据
         //访问网络
         httpget();
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //条目监听
+                Intent intent = new Intent(getActivity(), WebActivity.class);
+                intent.putExtra("url", list.get(position).getUrl());
+                startActivity(intent);
+            }
+        });
     }
 
+    //访问网路给listview添加数据
     private void httpget() {
         //访问网络
         RequestParams params = new RequestParams("http://ic.snssdk.com/2/article/v25/stream/?count=20&min_behot_time=1455521444&bd_city=%E5%8C%97%E4%BA%AC%E5%B8%82&bd_latitude=40.049317&bd_longitude=116.296499&bd_loc_time=1455521401&loc_mode=5&lac=4527&cid=28883&iid=3642583580&device_id=11131669133&ac=wifi&channel=baidu&aid=13&app_name=news_article&version_code=460&device_platform=android&device_type=SCH-I919U&os_api=19&os_version=4.4.2&uuid=285592931621751&openudid=AC9E172CE2490000");

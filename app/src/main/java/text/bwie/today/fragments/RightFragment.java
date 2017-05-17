@@ -119,9 +119,11 @@ public class RightFragment extends Fragment {
             @Override
             public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
                 String uid = map.get("uid");
+                //姓名
                 String name = map.get("name");
                 //性别
                 String gender = map.get("gender");
+                //头像
                 String iconurl = map.get("iconurl");
                 String unionid = map.get("unionid");
                 //添加到数据库中

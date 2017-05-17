@@ -12,6 +12,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
 import text.bwie.today.Beans.Tuijian_bean;
+import text.bwie.today.MyApplication;
 import text.bwie.today.R;
 
 /**
@@ -30,27 +31,22 @@ public class MyAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
-    public int getViewTypeCount() {
-        // TODO Auto-generated method stub
-        return 2;
-    }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -64,9 +60,9 @@ public class MyAdapter extends BaseAdapter {
         }
             holder.tv_title.setText(list.get(position).getTitle());
             holder.tv_data.setText(list.get(position).getSource());
-        if(list.get(position).getLarge_image_list().get(0).getUri()!=null){
-            ImageLoader.getInstance().displayImage(list.get(position).getLarge_image_list().get(0).getUri(),holder.im);
-        }
+
+            ImageLoader.getInstance().displayImage(list.get(position).getMiddle_image().getUrl(),holder.im, MyApplication.getdisplaytwo());
+
         return convertView;
     }
 

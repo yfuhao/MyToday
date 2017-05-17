@@ -34,6 +34,7 @@ public class MyApplication extends Application {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
     }
+
     public static DisplayImageOptions getdisplay() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnFail(R.mipmap.ic_launcher)
@@ -43,6 +44,19 @@ public class MyApplication extends Application {
                 .cacheOnDisk(true)
                 .considerExifParams(true)
                 .displayer(new RoundedBitmapDisplayer(360))
+                .build();
+        return options;
+    }
+
+
+    public static DisplayImageOptions getdisplaytwo() {
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnFail(R.mipmap.ic_launcher)
+                .showImageOnLoading(R.mipmap.ic_launcher)
+                .showImageForEmptyUri(R.mipmap.ic_launcher)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
                 .build();
         return options;
     }
