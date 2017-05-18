@@ -58,7 +58,6 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
                     //刷新数据
                     adapter.notifyDataSetChanged();
                     break;
-
             }
         }
     };
@@ -90,9 +89,8 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
                 //条目监听,传递数据
 
                 Intent intent = new Intent(getActivity(), WebActivity.class);
-                    intent.putExtra("url", list.get(position).getDisplay_url());
-                    System.out.println("list_new" + list.get(position).getShare_url());
-
+                intent.putExtra("url", list.get(position).getDisplay_url());
+                System.out.println("list_new" + list.get(position).getShare_url());
                 startActivity(intent);
             }
         });
