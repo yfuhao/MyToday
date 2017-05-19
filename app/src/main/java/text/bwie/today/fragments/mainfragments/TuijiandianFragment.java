@@ -27,7 +27,7 @@ import java.util.List;
 import text.bwie.today.Beans.Tuijian_bean;
 import text.bwie.today.R;
 import text.bwie.today.WebActivity;
-import text.bwie.today.utils.MyAdapter;
+import text.bwie.today.utils.Tuijian_adapter;
 
 /**
  * Created by lenovo-pc on 2017/5/11.
@@ -39,7 +39,7 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
     private SpringView springView;
     private ListView listView;
     private int page = 1;
-    private MyAdapter adapter;
+    private Tuijian_adapter adapter;
     RequestParams params;
     List<Tuijian_bean.DataBean> list = new ArrayList<Tuijian_bean.DataBean>();
     //List<text.bwie.today.Beans.bean.DataBean> list = new ArrayList<text.bwie.today.Beans.bean.DataBean>();
@@ -50,7 +50,7 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
             switch (msg.what) {
                 case 1:
                     //创建适配器，并给listview添加适配器
-                    adapter = new MyAdapter(getActivity(), list);
+                    adapter = new Tuijian_adapter(getActivity(), list);
                     listView.setAdapter(adapter);
 
                     break;
