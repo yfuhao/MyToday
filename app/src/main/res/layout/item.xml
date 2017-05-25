@@ -23,7 +23,7 @@
                 android:id="@+id/item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lines="2"
+                android:maxLines="2"
                 android:text="习近平十个比喻描绘“一带一路”蓝图"
                 android:textColor="@color/iblack"
                 android:textSize="15sp"
@@ -37,14 +37,6 @@
                 android:paddingTop="5dp">
 
                 <TextView
-                    android:id="@+id/item_lable"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="置顶"
-                    android:textColor="@color/iblack"
-                    android:textSize="12sp" />
-
-                <TextView
                     android:id="@+id/item_media_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,6 +45,7 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:layout_marginLeft="5dp"
                     android:id="@+id/item_comment_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

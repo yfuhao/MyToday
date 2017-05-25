@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -39,7 +40,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
     private List<Fragment> list = new ArrayList<Fragment>();
     private SlidingMenu slidingMenu;
-    private List<Fragment> fragments=new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>();
     private RadioGroup rg;
     private ViewPager viewPager;
 
@@ -52,7 +53,7 @@ public class MainActivity extends SlidingFragmentActivity {
         initGrayBackgroud();
 
         //如果当前页面 已经注册了  则不需要注册
-        if(!EventBus.getDefault().isRegistered(this)){
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
 
@@ -62,9 +63,9 @@ public class MainActivity extends SlidingFragmentActivity {
     //添加滑动效果
     private void initLeftFragment() {
         //左滑
-        Fragment leftFragment=new LeftFragment();
+        Fragment leftFragment = new LeftFragment();
         setBehindContentView(R.layout.left_frame);
-        getSupportFragmentManager().beginTransaction().replace(R.id.left_frame,leftFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.left_frame, leftFragment).commit();
 
         slidingMenu = getSlidingMenu();
 
@@ -80,7 +81,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
         slidingMenu.setFadeDegree(0.35f);
         //右滑
-        Fragment rightFragment=new RightFragment();
+        Fragment rightFragment = new RightFragment();
         slidingMenu.setSecondaryMenu(R.layout.right_frame);
         getSupportFragmentManager().beginTransaction().replace(R.id.right_frame, rightFragment).commit();
 
@@ -94,25 +95,25 @@ public class MainActivity extends SlidingFragmentActivity {
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                Fragment fragment=null;
-                switch (position){
+                Fragment fragment = null;
+                switch (position) {
                     case 0:
-                        fragment=new TuijiandianFragment();
+                        fragment = new TuijiandianFragment();
                         break;
                     case 1:
-                        fragment=new RedianFragment();
+                        fragment = new RedianFragment();
                         break;
                     case 2:
-                        fragment=new ShipinFragment();
+                        fragment = new ShipinFragment();
                         break;
                     case 3:
-                        fragment=new BeijingFragment();
+                        fragment = new BeijingFragment();
                         break;
                     case 4:
-                        fragment=new ShehuiFragment();
+                        fragment = new ShehuiFragment();
                         break;
                     case 5:
-                        fragment=new DingyueFragment();
+                        fragment = new DingyueFragment();
                         break;
                 }
                 return fragment;
@@ -127,8 +128,8 @@ public class MainActivity extends SlidingFragmentActivity {
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                for(int i=0;i<6;i++){
-                    if(rg.getChildAt(i).getId()==checkedId){
+                for (int i = 0; i < 6; i++) {
+                    if (rg.getChildAt(i).getId() == checkedId) {
                         viewPager.setCurrentItem(i);
                     }
                 }
@@ -154,9 +155,9 @@ public class MainActivity extends SlidingFragmentActivity {
         });
     }
 
-    WindowManager windowManager ;
-    WindowManager.LayoutParams layoutParams ;
-    View view ;
+    WindowManager windowManager;
+    WindowManager.LayoutParams layoutParams;
+    View view;
 
     public void initGrayBackgroud() {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -167,7 +168,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
 //        后面的view获得焦点
         layoutParams = new WindowManager.LayoutParams
-                (WindowManager.LayoutParams.TYPE_APPLICATION,WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                (WindowManager.LayoutParams.TYPE_APPLICATION, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                         PixelFormat.TRANSPARENT);
         view = new View(this);
 
@@ -178,13 +179,13 @@ public class MainActivity extends SlidingFragmentActivity {
     // 日 夜切换
 // 日 夜切换
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainActivityEvent(MainActivityEvent event){
+    public void onMainActivityEvent(MainActivityEvent event) {
         System.out.println("isChecked = " + event.isWhite());
 
-        if(event.isWhite()){
+        if (event.isWhite()) {
             // 日
             windowManager.removeViewImmediate(view);
-        } else  {
+        } else {
             // true 夜
             windowManager.addView(view, layoutParams);
 
@@ -192,7 +193,7 @@ public class MainActivity extends SlidingFragmentActivity {
         //对所有的控件取出,设置对应的图片
         setView();
         //更改字体颜色
-        switchTextViewColor((ViewGroup) getWindow().getDecorView(),event.isWhite());
+        switchTextViewColor((ViewGroup) getWindow().getDecorView(), event.isWhite());
 
 
         /*LeftFragment leftFragment = (LeftFragment) list.get(0);
@@ -200,29 +201,32 @@ public class MainActivity extends SlidingFragmentActivity {
 
 
     }
-    // 更改 控件 背景
-    private   void setView(){
 
+    // 更改 控件 背景
+    private void setView() {
+        Toast.makeText(this, "更改控件背景", Toast.LENGTH_SHORT).show();
 
     }
+
     /**
      * 遍历出所有的textView设置对应的颜色
+     *
      * @param view
      */
-    public void switchTextViewColor(ViewGroup view,boolean white) {
+    public void switchTextViewColor(ViewGroup view, boolean white) {
 //        getChildCount 获取ViewGroup下view的个数
 //        view.getChildAt(i) 根据下标获取对应的子view
         for (int i = 0; i < view.getChildCount(); i++) {
             if (view.getChildAt(i) instanceof ViewGroup) {
-                switchTextViewColor((ViewGroup) view.getChildAt(i),white);
+                switchTextViewColor((ViewGroup) view.getChildAt(i), white);
             } else if (view.getChildAt(i) instanceof TextView) {
                 //设置颜色
-                int resouseId ;
+                int resouseId;
                 TextView textView = (TextView) view.getChildAt(i);
-                if(white){
+                if (white) {
                     resouseId = Color.BLACK;
-                }else {
-                    resouseId = Color.WHITE;
+                } else {
+                    resouseId = Color.GRAY;
                 }
                 textView.setTextColor(resouseId);
             }

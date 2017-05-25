@@ -3,11 +3,15 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springview_dingyue"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="100sp"
-        android:text="6"
-        android:gravity="center"/>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/dingyue_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </com.liaoinstan.springview.widget.SpringView>
 
 </LinearLayout>

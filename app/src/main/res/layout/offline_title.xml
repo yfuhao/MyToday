@@ -2,28 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="50dp"
-        android:clickable="true"
-        android:layout_margin="10dp"
-        android:background="@drawable/oofline_tuichi_image" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="离线下载"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_height="49dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="下载"
-        android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/lixian_fanhui"
+            android:layout_width="15dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_back"
+            android:clickable="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="离线下载"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lixian_xiazai"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="下载"
+            android:clickable="true"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#999999" />
 </LinearLayout>

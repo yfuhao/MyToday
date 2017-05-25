@@ -52,11 +52,11 @@ public class Tuijian_adapter extends BaseAdapter {
             convertView = convertView.inflate(context, R.layout.item, null);
             viewHolder = new ViewHolder();
             viewHolder.item_title = (TextView) convertView.findViewById(R.id.item_title);
-            viewHolder.item_lable = (TextView) convertView.findViewById(R.id.item_lable);
             viewHolder.item_media_name = (TextView) convertView.findViewById(R.id.item_media_name);
             viewHolder.item_comment_count = (TextView) convertView.findViewById(R.id.item_comment_count);
-
+            //右方的图片
             viewHolder.right_image = (ImageView) convertView.findViewById(R.id.item_middle_image);
+            //下方的图片
             viewHolder.item_image01 = (ImageView) convertView.findViewById(R.id.item_image01);
             viewHolder.item_image02 = (ImageView) convertView.findViewById(R.id.item_image02);
             viewHolder.item_image03 = (ImageView) convertView.findViewById(R.id.item_image03);
@@ -67,40 +67,45 @@ public class Tuijian_adapter extends BaseAdapter {
         }
 
         Tuijian_bean.DataBean news = list.get(position);
+        //System.out.println("list_news " + news.getMiddle_image().getUrl());
+
         viewHolder.item_title.setText(news.getTitle());
-        viewHolder.item_lable.setText(news.getSource());
-        viewHolder.item_media_name.setText("评论 " + news.getBan_comment());
+        viewHolder.item_media_name.setText(news.getSource());
+        viewHolder.item_comment_count.setText("评论 " + news.getComment_count());
         List<Tuijian_bean.DataBean.ImageListBean> image_list = news.getImage_list();
         viewHolder.item_media_name.setVisibility(View.VISIBLE);
         if (image_list != null && image_list.size() != 0) {
             //如果image_list的个数等于3，则添加图片
-            if (image_list.size() == 3) {
+            if (image_list.get(0).getUrl() != null && image_list.get(1).getUrl() != null && image_list.get(2).getUrl() != null) {
                 viewHolder.right_image.setVisibility(View.GONE);
                 viewHolder.item_bottom_layout.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(image_list.get(0).getUrl(), viewHolder.item_image01);
-                ImageLoader.getInstance().displayImage(image_list.get(1).getUrl(), viewHolder.item_image02);
-                ImageLoader.getInstance().displayImage(image_list.get(2).getUrl(), viewHolder.item_image03);
+                ImageLoader.getInstance().displayImage(image_list.get(0).getUrl(), viewHolder.item_image01, MyApplication.getdisplaytwo());
+                ImageLoader.getInstance().displayImage(image_list.get(1).getUrl(), viewHolder.item_image02, MyApplication.getdisplaytwo());
+                ImageLoader.getInstance().displayImage(image_list.get(2).getUrl(), viewHolder.item_image03, MyApplication.getdisplaytwo());
             }
+        } else {
+            if (list.get(position).getMiddle_image() != null) {
+                if (list.get(position).getMiddle_image().getUrl() != null) {
 
-
-        } else if (list.get(position).getMiddle_image() != null) {
-            //显示和隐藏
-            viewHolder.right_image.setVisibility(View.VISIBLE);
-            viewHolder.item_bottom_layout.setVisibility(View.GONE);
-            if (list.get(position).getMiddle_image().getUri() == null) {
+                    //显示和隐藏
+                    viewHolder.right_image.setVisibility(View.VISIBLE);
+                    viewHolder.item_bottom_layout.setVisibility(View.GONE);
+                    System.out.println("list_new" + list.get(position).getMiddle_image().getUri() + 1111);
+                    ImageLoader.getInstance().displayImage(list.get(position).getMiddle_image().getUrl(), viewHolder.right_image, MyApplication.getdisplaytwo());
+                } else {
+                    //不显示图片
+                    viewHolder.right_image.setVisibility(View.GONE);
+                    viewHolder.item_bottom_layout.setVisibility(View.GONE);
+                    System.out.println("list_new " + "没有图片" + "  " + list.get(position).getUrl());
+                }
+            } else {
+                //不显示图片
                 viewHolder.right_image.setVisibility(View.GONE);
-//                System.out.println("list_new" + list.get(position).getMiddle_image().getUri() + 22222);
-//                System.out.println("list_new" + list.get(position).getShare_url() + 22222);
-//                ImageLoader.getInstance().displayImage(li                                                       st.get(position).getShare_url(), viewHolder.right_image, MyApplication.getdisplay());
-            }else{
-                System.out.println("list_new" + list.get(position).getMiddle_image().getUri() + 1111);
-                ImageLoader.getInstance().displayImage(list.get(position).getMiddle_image().getUrl(), viewHolder.right_image, MyApplication.getdisplaytwo());
+                viewHolder.item_bottom_layout.setVisibility(View.GONE);
+                System.out.println("list_new " + "没有右侧图片" + "  " + list.get(position).getUrl());
             }
 
-        }else{
-            System.out.println("list_new = " + 33333333+"  "+position);
         }
-
 
         return convertView;
     }
@@ -108,8 +113,6 @@ public class Tuijian_adapter extends BaseAdapter {
     class ViewHolder {
         //新闻标题
         TextView item_title;
-        //标签
-        TextView item_lable;
         //新闻源
         TextView item_media_name;
         //评论数
