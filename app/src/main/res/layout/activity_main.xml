@@ -19,6 +19,7 @@
         android:background="#6666">
 
         <HorizontalScrollView
+            android:scrollbarSize="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/main_manage">
@@ -125,6 +126,7 @@
         </HorizontalScrollView>
 
         <ImageView
+            android:padding="10dp"
             android:id="@+id/main_manage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

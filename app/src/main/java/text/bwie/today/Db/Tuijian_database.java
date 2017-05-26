@@ -16,7 +16,7 @@ public class Tuijian_database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //创建数据库
-        System.out.println("list_new" + "创建了数据库");
+       //System.out.println("list_new" + "创建了数据库");
         db.execSQL("create table tuijian (id Integer primary key autoincrement,title varchar(20),media_name varchar(20),commcent_count Integer,right_image varchar(20),bottom_image01 varchar(20),bottom_image02 varchar(20),bottom_image03 varchar(20))");
     }
 

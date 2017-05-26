@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,42 +50,40 @@ public class MainActivity extends SlidingFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initLeftFragment();
-
         initGrayBackgroud();
-
         //如果当前页面 已经注册了  则不需要注册
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
 
+        ImageView main_manage = (ImageView) findViewById(R.id.main_manage);
+        main_manage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PindaoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    //
     //添加滑动效果
     private void initLeftFragment() {
         //左滑
         Fragment leftFragment = new LeftFragment();
         setBehindContentView(R.layout.left_frame);
         getSupportFragmentManager().beginTransaction().replace(R.id.left_frame, leftFragment).commit();
-
         slidingMenu = getSlidingMenu();
-
         slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
-
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-
         slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
-
         slidingMenu.setShadowDrawable(R.drawable.shadow);
-
         slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-
         slidingMenu.setFadeDegree(0.35f);
         //右滑
         Fragment rightFragment = new RightFragment();
         slidingMenu.setSecondaryMenu(R.layout.right_frame);
         getSupportFragmentManager().beginTransaction().replace(R.id.right_frame, rightFragment).commit();
-
+        //添加fragment
         AddFragment();
 
     }
@@ -124,6 +123,7 @@ public class MainActivity extends SlidingFragmentActivity {
                 return 6;
             }
         });
+
         //radiogroup点击监听
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -144,13 +144,12 @@ public class MainActivity extends SlidingFragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
+                //同步Radiogroup
                 rg.check(rg.getChildAt(position).getId());
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
@@ -165,23 +164,18 @@ public class MainActivity extends SlidingFragmentActivity {
 //        应用程序窗口。 WindowManager.LayoutParams.TYPE_APPLICATION
 //        所有程序窗口的“基地”窗口，其他应用程序窗口都显示在它上面。
 //        普通应用功能程序窗口。token必须设置为Activity的token，以指出该窗口属谁。
-
 //        后面的view获得焦点
         layoutParams = new WindowManager.LayoutParams
                 (WindowManager.LayoutParams.TYPE_APPLICATION, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                         PixelFormat.TRANSPARENT);
         view = new View(this);
-
         view.setBackgroundResource(R.color.color_window);
 
     }
 
-    // 日 夜切换
-// 日 夜切换
+    // 日夜切换
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainActivityEvent(MainActivityEvent event) {
-        System.out.println("isChecked = " + event.isWhite());
-
         if (event.isWhite()) {
             // 日
             windowManager.removeViewImmediate(view);
@@ -194,12 +188,6 @@ public class MainActivity extends SlidingFragmentActivity {
         setView();
         //更改字体颜色
         switchTextViewColor((ViewGroup) getWindow().getDecorView(), event.isWhite());
-
-
-        /*LeftFragment leftFragment = (LeftFragment) list.get(0);
-        leftFragment.changeMode(event.isWhite());*/
-
-
     }
 
     // 更改 控件 背景
@@ -210,8 +198,6 @@ public class MainActivity extends SlidingFragmentActivity {
 
     /**
      * 遍历出所有的textView设置对应的颜色
-     *
-     * @param view
      */
     public void switchTextViewColor(ViewGroup view, boolean white) {
 //        getChildCount 获取ViewGroup下view的个数
@@ -237,6 +223,7 @@ public class MainActivity extends SlidingFragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //关闭eventbus
         EventBus.getDefault().unregister(this);
     }
 
