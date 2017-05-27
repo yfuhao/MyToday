@@ -25,6 +25,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.Map;
 
+import text.bwie.today.City_list.City_activity;
 import text.bwie.today.MyApplication;
 import text.bwie.today.OfflineActivity;
 import text.bwie.today.R;
@@ -48,6 +49,7 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener {
     private TextView user_name;
     private TextView user_gender;
     private SharedPreferences usershared;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,8 +63,21 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener {
         //离线缓存监听
         init(view);
 
+        city_list(view);
+
         return view;
 
+    }
+
+    private void city_list(View view) {
+        ImageView image_city = (ImageView) view.findViewById(R.id.left_city);
+        image_city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), City_activity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -154,7 +169,7 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener {
         //显示图片
         user_image = (ImageView) view.findViewById(R.id.fragment_left_user_image);
         user_name = (TextView) view.findViewById(R.id.fragment_left_user_name);
-        user_gender= (TextView) view.findViewById(R.id.fragment_left_user_gender);
+        user_gender = (TextView) view.findViewById(R.id.fragment_left_user_gender);
         String name = usershared.getString("user_name", null);
         String image = usershared.getString("user_image", null);
         String gender = usershared.getString("user_gender", null);
@@ -210,7 +225,7 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener {
                 //性别
                 String gender = map.get("gender");
                 String iconurl = map.get("iconurl");
-               // String unionid = map.get("unionid");
+                // String unionid = map.get("unionid");
                 user_name.setText(name);
                 ImageLoader.getInstance().displayImage(iconurl, user_image, MyApplication.getdisplay());
                 user_name.setText(name);
@@ -221,6 +236,7 @@ public class LeftFragment extends BaseFragment implements View.OnClickListener {
                 denglu.setVisibility(View.INVISIBLE);
                 user.setVisibility(View.VISIBLE);
             }
+
             @Override
             public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
 

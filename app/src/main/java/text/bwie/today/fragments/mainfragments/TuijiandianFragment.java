@@ -1,6 +1,8 @@
 package text.bwie.today.fragments.mainfragments;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -110,10 +114,52 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
 
         //条目监听
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //条目监听,传递数据
+            private TextView shanchu;
 
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
+                //条目监听,传递数据
+                shanchu = (TextView) view.findViewById(R.id.tv_shanchu);
+                shanchu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Toast.makeText(getActivity(), "点击了删除"+shanchu.getHeight(), Toast.LENGTH_SHORT).show();
+                        View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.mypopupwindow, null);
+                        final PopupWindow popup = new PopupWindow(view1, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                        popup.setTouchable(true);
+                        popup.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+                        popup.setAnimationStyle(R.id.tv_shanchu);
+                        popup.setFocusable(true);
+                        popup.setOutsideTouchable(true);
+
+                        System.out.println("list_new");
+                        popup.showAsDropDown(shanchu, -300, -50);
+                        TextView tv_shanchu = (TextView) view1.findViewById(R.id.shanchu);
+                        tv_shanchu.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //删除
+                                Toast.makeText(getActivity(), "删除", Toast.LENGTH_SHORT).show();
+                                list.remove(position);
+                                //删除数据库中的数据
+
+                                adapter.notifyDataSetChanged();
+                                popup.dismiss();
+                            }
+                        });
+                        TextView tv_shoucang = (TextView) view1.findViewById(R.id.shoucang);
+                        tv_shoucang.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //删除
+                                Toast.makeText(getActivity(), "完成收藏", Toast.LENGTH_SHORT).show();
+                                popup.dismiss();
+                            }
+                        });
+
+
+                    }
+                });
                 Intent intent = new Intent(getActivity(), WebActivity.class);
                 intent.putExtra("url", list.get(position).getDisplay_url());
                 System.out.println("list_new" + list.get(position).getShare_url());
@@ -145,6 +191,7 @@ public class TuijiandianFragment extends Fragment implements SpringView.OnFreshL
                     list.addAll(data);
                     handler.sendEmptyMessage(2);
                 }
+                ;
 
                 List<Tuijian_bean.DataBean> selsql = selsql();
                 if (selsql.size() == 0) {

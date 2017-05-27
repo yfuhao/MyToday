@@ -67,6 +67,7 @@
             android:theme="@style/Theme.UMDefault" />
         <activity android:name=".WebActivity" />
         <activity android:name=".PindaoActivity"></activity>
+        <activity android:name=".City_list.City_activity" />
     </application>
 
 </manifest>
