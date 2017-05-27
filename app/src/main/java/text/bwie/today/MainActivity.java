@@ -27,6 +27,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import text.bwie.today.Pindao.PindaoAcitivty;
 import text.bwie.today.events.MainActivityEvent;
 import text.bwie.today.fragments.LeftFragment;
 import text.bwie.today.fragments.RightFragment;
@@ -60,7 +61,7 @@ public class MainActivity extends SlidingFragmentActivity {
         main_manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PindaoActivity.class);
+                Intent intent = new Intent(MainActivity.this, PindaoAcitivty.class);
                 startActivity(intent);
             }
         });
