@@ -118,7 +118,6 @@ public class MainActivity extends SlidingFragmentActivity {
                 }
                 return fragment;
             }
-
             @Override
             public int getCount() {
                 return 6;

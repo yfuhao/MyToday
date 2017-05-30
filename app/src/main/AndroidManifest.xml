@@ -26,7 +26,7 @@
             android:name="UMENG_APPKEY"
             android:value="5911b7659f06fd0581000e4d" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -68,7 +68,7 @@
         <activity android:name=".WebActivity" />
         <activity android:name=".City_list.City_activity" />
         <activity android:name=".Pindao.PindaoAcitivty" />
-
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
